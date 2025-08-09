@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pet Wearable Integration</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
 <style>
     body {
         font-family: 'Poppins', sans-serif;
@@ -56,6 +57,8 @@
         font-weight: 600;
         cursor: pointer;
         transition: 0.3s;
+        text-decoration: none;
+        display: inline-block;
     }
     .connect-btn:hover {
         background: #e8436f;
@@ -99,7 +102,17 @@
 </style>
 </head>
 <body>
-
+<div class="navbar">
+    <a href="index.html" class="navbar-logo">🐾 PetFit</a>
+    <div class="navbar-links">
+        <a href="index.html">Home</a>
+        <a href="wearable.html">Wearable Devices</a>
+        <a href="behaviour-upload.html">Behaviour Upload</a>
+        <a href="behaviour-view.html">Behaviour Gallery</a>
+        <a href="chatbot.html">Pet AI Chat</a>
+        <a href="about.html">About</a>
+    </div>
+</div>
 <div class="hero">
     <h1>Pet Wearable Integration</h1>
     <p>Connect your pet’s wearable device to track and store health data in TiDB</p>
@@ -109,18 +122,19 @@
     <div class="card">
         <h2>FitBark</h2>
         <p>Track activity, sleep & more from FitBark devices.</p>
-        <button class="connect-btn">Connect</button>
+        <a href="connect-fitbark.html" class="connect-btn">Connect</a>
     </div>
     <div class="card">
         <h2>Whistle</h2>
         <p>Monitor location & health data from Whistle wearables.</p>
-        <button class="connect-btn">Connect</button>
+        <a href="connect-whistle.html" class="connect-btn">Connect</a>
     </div>
     <div class="card">
         <h2>Other Devices</h2>
         <p>Import data from any supported smart collar.</p>
-        <button class="connect-btn">Connect</button>
+        <a href="connect-other-device.html" class="connect-btn">Connect</a>
     </div>
+    
 </div>
 
 <div class="stats">

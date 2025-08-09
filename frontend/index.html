@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetFit - Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        background: #f9f9f9;
+        color: #333;
+    }
+    .hero {
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        padding: 70px 20px;
+        text-align: center;
+        color: white;
+    }
+    .hero h1 {
+        font-size: 2.8em;
+        margin-bottom: 15px;
+    }
+    .hero p {
+        font-size: 1.2em;
+        opacity: 0.95;
+    }
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 50px;
+        max-width: 1300px;
+        margin: auto;
+    }
+    .feature-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .feature-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+    .feature-content {
+        padding: 20px;
+        flex: 1;
+    }
+    .feature-content h3 {
+        font-size: 1.4em;
+        margin-bottom: 10px;
+        color: #ff6f91;
+    }
+    .feature-content p {
+        font-size: 0.95em;
+        color: #555;
+        line-height: 1.5;
+    }
+    .feature-btn {
+        display: block;
+        margin: 20px;
+        padding: 10px 15px;
+        background: linear-gradient(135deg, #ff6f91, #ff9671);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95em;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+    .feature-btn:hover {
+        background: linear-gradient(135deg, #ff9671, #ff6f91);
+    }
+    footer {
+        background: #fff0f3;
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9em;
+        color: #777;
+    }
+</style>
+</head>
+<body>
+<div class="navbar">
+    <a href="index.html" class="navbar-logo">🐾 PetFit</a>
+    <div class="navbar-links">
+        <a href="index.html">Home</a>
+        <a href="wearable.html">Wearable Devices</a>
+        <a href="behaviour-upload.html">Behaviour Upload</a>
+        <a href="behaviour-view.html">Behaviour Gallery</a>
+        <a href="chatbot.html">Pet AI Chat</a>
+        <a href="about.html">About</a>
+    </div>
+</div>
+<div class="hero">
+    <h1>Welcome to PetFit</h1>
+    <p>Your AI companion for monitoring and improving your pet’s wellbeing</p>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16" alt="Pet Wearable">
+        <div class="feature-content">
+            <h3>Pet Wearable Connection</h3>
+            <p>Connect your smart pet wearable and monitor activity, location, and health in real time.</p>
+        </div>
+        <a href="wearable.html" class="feature-btn">Try Now</a>
+    </div>
+    
+    <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6" alt="Behaviour Snapshot">
+        <div class="feature-content">
+            <h3>Behaviour Snapshot Upload</h3>
+            <p>Upload photos or videos of your pet’s behaviour for instant analysis and feedback.</p>
+        </div>
+        <a href="behaviour-upload.html" class="feature-btn">Try Now</a>
+    </div>
+    
+    <div class="feature-card">
+        <img src="https://img1.wsimg.com/isteam/ip/14601819-e3f6-4385-bd25-7b3e6849270e/shutterstock_447853087.jpg" alt="Chatbot">
+        <div class="feature-content">
+            <h3>AI Behaviour Chatbot</h3>
+            <p>Chat with our AI to understand and improve your pet’s behaviour. Supports text, image, and video input.</p>
+        </div>
+        <a href="chatbot.html" class="feature-btn">Try Now</a>
+    </div>
+    
+    <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1507149833265-60c372daea22" alt="Training Suggestions">
+        <div class="feature-content">
+            <h3>Training Suggestions</h3>
+            <p>Get personalized training plans based on your pet’s activity, mood, and habits.</p>
+        </div>
+        <a href="chatbot.html" class="feature-btn">Try Now</a>
+    </div>
+    
+    <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783" alt="Health Tracking">
+        <div class="feature-content">
+            <h3>Health Tracking</h3>
+            <p>Monitor your pet’s diet, weight, and overall health with easy-to-read reports and charts.</p>
+        </div>
+        <a href="wearable.html" class="feature-btn">Try Now</a>
+    </div>
+    
+    <div class="feature-card">
+        <img src="https://images.unsplash.com/photo-1554456854-55a089fd4cb2" alt="Community">
+        <div class="feature-content">
+            <h3>Pet Community</h3>
+            <p>Connect with other pet owners, share experiences, and learn from the community.</p>
+        </div>
+        <a href="feature6.html" class="feature-btn">Try Now</a>
+    </div>
+    
+    <div class="feature-card">
+        <img src="https://d2zp5xs5cp8zlg.cloudfront.net/image-60576-800.jpg" alt="Emergency Alerts">
+        <div class="feature-content">
+            <h3>Emergency Alerts</h3>
+            <p>Get notified instantly if unusual behaviour or emergencies are detected with your pet.</p>
+        </div>
+        <a href="feature7.html" class="feature-btn">Try Now</a>
+    </div>
+    
+    <div class="feature-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLW2dskdC_0jSNFTdULh127e8avNOYjZZG631SuoAX_YsJiqEeEtHM4aCeYK33ZZADJ-4&usqp=CAU" alt="Pet Insights">
+        <div class="feature-content">
+            <h3>Pet Insights Dashboard</h3>
+            <p>View a detailed dashboard of your pet’s activity trends, health stats, and behaviour changes.</p>
+        </div>
+        <a href="feature8.html" class="feature-btn">Try Now</a>
+    </div>
+</div>
+
+<footer>
+    © 2025 PetFit. All rights reserved.
+</footer>
+
+</body>
+</html>
