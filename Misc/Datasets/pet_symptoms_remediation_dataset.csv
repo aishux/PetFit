@@ -1,0 +1,57 @@
+id,Owner Observation Notes,Clinical Notes,Prescriptions,Level of Criticality
+100624,Hamster is shaking head frequently and scratching ears,"Inflammation and discharge observed in Hamster's ears, consistent with infection.",Clean ears with vet-approved solution and administer prescribed ear drops,Medium but still consult doctor
+100270,The Dog is frequently licking his paws,Dog has excessive tear production and redness in eyes,Feed with easily digestible food and monitor water intake,Medium but still consult doctor
+101265,"Cat has been making unusual sounds, possibly out of discomfort.",Cat has joint inflammation likely due to arthritis,Maintain flea and tick prevention regimen,Medium but still consult doctor
+100366,Hamster is having trouble walking and appears to be limping,Signs of joint stiffness and reduced mobility observed in Hamster,Introduce a joint supplement and ensure rest; consult vet if worsens,Very high consult the doctor
+101489,Cat is shaking head frequently and scratching ears,"Inflammation and discharge observed in Cat's ears, consistent with infection.",Clean ears with vet-approved solution and administer prescribed ear drops,Very high consult the doctor
+100507,The Parrot is frequently licking her paws,Signs of intestinal blockage observed in Parrot,Clean affected area with vet-approved solution,Nothing to worry
+101037,Cat has reduced appetite and occasional vomiting,"Stomach upset observed in Cat, likely due to dietary issues.",Feed with easily digestible food and monitor water intake,Low can be treated at home
+101615,Hamster is scratching frequently and showing signs of irritation,"Hamster has visible signs of parasitic infestation, including mild skin inflammation.",Administer antiparasitic treatment as directed by vet,Low can be treated at home
+101021,Cat is having trouble walking and appears to be limping,Signs of joint stiffness and reduced mobility observed in Cat,Introduce a joint supplement and ensure rest; consult vet if worsens,Medium but still consult doctor
+101870,The Dog seems painful when he opens his mouth wide to yawn,Skin rash spreading around the neck and belly of Dog,Feed with easily digestible food and monitor water intake,Medium but still consult doctor
+100026,Parrot is scratching frequently and showing signs of irritation,"Parrot has visible signs of parasitic infestation, including mild skin inflammation.",Administer antiparasitic treatment as directed by vet,Low can be treated at home
+101213,Dog has reduced appetite and occasional vomiting,"Stomach upset observed in Dog, likely due to dietary issues.",Feed with easily digestible food and monitor water intake,Medium but still consult doctor
+101426,Parrot is shaking head frequently and scratching ears,"Inflammation and discharge observed in Parrot's ears, consistent with infection.",Clean ears with vet-approved solution and administer prescribed ear drops,Very high consult the doctor
+101467,Dog is having trouble walking and appears to be limping,Signs of joint stiffness and reduced mobility observed in Dog,Introduce a joint supplement and ensure rest; consult vet if worsens,Very high consult the doctor
+101436,Dog is shaking head frequently and scratching ears,"Inflammation and discharge observed in Dog's ears, consistent with infection.",Clean ears with vet-approved solution and administer prescribed ear drops,Very high consult the doctor
+101815,Parrot is having trouble walking and appears to be limping,Signs of joint stiffness and reduced mobility observed in Parrot,Introduce a joint supplement and ensure rest; consult vet if worsens,Low can be treated at home
+101065,Spotted small moving specks on Cat's fur,Signs of intestinal blockage observed in Cat,Limit physical activity for one week,Low can be treated at home
+100363,Dog has patches of missing fur and red skin underneath,Palpation reveals discomfort in lower back region of Dog,Schedule follow-up appointment in 3 days,Medium but still consult doctor
+101424,Dog has been lethargic and is avoiding playtime,Presence of fleas and mites detected on Dog,Clean affected area with vet-approved solution,Nothing to worry
+101169,Dog is scratching frequently and showing signs of irritation,"Dog has visible signs of parasitic infestation, including mild skin inflammation.",Administer antiparasitic treatment as directed by vet,Low can be treated at home
+101915,Parrot has been scratching her ears a lot lately,"Parrot exhibits repetitive head shaking, indicating possible infection.",Administer prescribed antibiotics for 7 days,Very high consult the doctor
+100974,Hamster appears to have trouble walking and prefers to lie down,Signs of intestinal blockage observed in Hamster,Schedule follow-up appointment in 3 days,Nothing to worry
+100072,Parrot has been lethargic and is avoiding playtime,Parrot's ear hematoma was drained but filled right back up,Introduce a joint supplement in daily diet,Low can be treated at home
+101743,Cat is scratching frequently and showing signs of irritation,"Cat has visible signs of parasitic infestation, including mild skin inflammation.",Administer antiparasitic treatment as directed by vet,Medium but still consult doctor
+100228,The Hamster is frequently licking his paws,Hamster shows signs of dehydration and fatigue,Feed with easily digestible food and monitor water intake,Low can be treated at home
+101933,"Dog has been making unusual sounds, possibly out of discomfort.",Palpation reveals discomfort in lower back region of Dog,Provide anti-inflammatory medication as directed,Medium but still consult doctor
+100590,Cat has been scratching her ears a lot lately,Cat has joint inflammation likely due to arthritis,Feed with easily digestible food and monitor water intake,Low can be treated at home
+100544,Parrot has reduced appetite and occasional vomiting,"Stomach upset observed in Parrot, likely due to dietary issues.",Feed with easily digestible food and monitor water intake,Low can be treated at home
+100303,Spotted small moving specks on Parrot's fur,Skin rash spreading around the neck and belly of Parrot,Schedule follow-up appointment in 3 days,Nothing to worry
+100627,Cat appears to have trouble walking and prefers to lie down,Cat has excessive tear production and redness in eyes,Limit physical activity for one week,Medium but still consult doctor
+100163,Dog appears to have trouble walking and prefers to lie down,Signs of intestinal blockage observed in Dog,Schedule follow-up appointment in 3 days,Low can be treated at home
+101217,Parrot appears to have trouble walking and prefers to lie down,Presence of fleas and mites detected on Parrot,Limit physical activity for one week,Very high consult the doctor
+101103,Cat has been lethargic and is avoiding playtime,Skin rash spreading around the neck and belly of Cat,Introduce a joint supplement in daily diet,Low can be treated at home
+100750,"Hamster has been making unusual sounds, possibly out of discomfort.",Skin rash spreading around the neck and belly of Hamster,Schedule follow-up appointment in 3 days,Low can be treated at home
+100972,Hamster has reduced appetite and occasional vomiting,"Stomach upset observed in Hamster, likely due to dietary issues.",Feed with easily digestible food and monitor water intake,Medium but still consult doctor
+100760,The Hamster seems painful when he opens his mouth wide to yawn,Hamster has excessive tear production and redness in eyes,Administer prescribed antibiotics for 7 days,Medium but still consult doctor
+101787,The Cat is frequently licking her paws,Palpation reveals discomfort in lower back region of Cat,Schedule follow-up appointment in 3 days,Very high consult the doctor
+101639,Hamster has patches of missing fur and red skin underneath,Skin rash spreading around the neck and belly of Hamster,Introduce a joint supplement in daily diet,Low can be treated at home
+100017,Hamster has been scratching his ears a lot lately,Hamster shows signs of dehydration and fatigue,Maintain flea and tick prevention regimen,Nothing to worry
+100131,Parrot has patches of missing fur and red skin underneath,Parrot has joint inflammation likely due to arthritis,Provide anti-inflammatory medication as directed,Very high consult the doctor
+100415,Spotted small moving specks on Hamster's fur,Hamster's ear hematoma was drained but filled right back up,Provide anti-inflammatory medication as directed,Very high consult the doctor
+100133,The Cat seems painful when she opens her mouth wide to yawn,Cat shows signs of dehydration and fatigue,Provide anti-inflammatory medication as directed,Very high consult the doctor
+101593,The Dog keeps shaking his head and tilting it sideways,Dog shows signs of dehydration and fatigue,Introduce a joint supplement in daily diet,Medium but still consult doctor
+100440,The Hamster keeps shaking his head and tilting it sideways,Hamster has excessive tear production and redness in eyes,Provide anti-inflammatory medication as directed,Low can be treated at home
+101107,Observed that Parrot is not eating and has a bloated stomach,"Parrot exhibits repetitive head shaking, indicating possible infection.",Schedule follow-up appointment in 3 days,Nothing to worry
+101263,"Parrot has been making unusual sounds, possibly out of discomfort.",Parrot has excessive tear production and redness in eyes,Schedule follow-up appointment in 3 days,Medium but still consult doctor
+101736,Dog has been scratching his ears a lot lately,Palpation reveals discomfort in lower back region of Dog,Feed with easily digestible food and monitor water intake,Medium but still consult doctor
+101279,The Parrot keeps shaking her head and tilting it sideways,Parrot has excessive tear production and redness in eyes,Maintain flea and tick prevention regimen,Very high consult the doctor
+100100,Observed that Hamster is not eating and has a bloated stomach,Hamster presented with mild swelling in the abdomen and reduced appetite,Provide anti-inflammatory medication as directed,Medium but still consult doctor
+100547,Cat has patches of missing fur and red skin underneath,Presence of fleas and mites detected on Cat,Clean affected area with vet-approved solution,Low can be treated at home
+100230,Hamster has been lethargic and is avoiding playtime,Hamster shows signs of dehydration and fatigue,Maintain flea and tick prevention regimen,Nothing to worry
+100826,The Cat keeps shaking her head and tilting it sideways,Cat has joint inflammation likely due to arthritis,Apply medicated ointment twice daily,Very high consult the doctor
+100357,Observed that Cat is not eating and has a bloated stomach,Skin rash spreading around the neck and belly of Cat,Feed with easily digestible food and monitor water intake,Nothing to worry
+101957,Spotted small moving specks on Dog's fur,Presence of fleas and mites detected on Dog,Limit physical activity for one week,Medium but still consult doctor
+101699,Observed that Dog is not eating and has a bloated stomach,Dog's ear hematoma was drained but filled right back up,Limit physical activity for one week,Medium but still consult doctor
+100600,The Parrot seems painful when she opens her mouth wide to yawn,Parrot shows signs of dehydration and fatigue,Feed with easily digestible food and monitor water intake,Medium but still consult doctor
