@@ -1,6 +1,11 @@
 from google.adk.agents import LlmAgent
 from .tools import query_information_database
+from petfit_agent.setup import save_pet_weekly_history_cache
+from google.adk.agents.callback_context import CallbackContext
 
+def after_agent_callback_method(callback_context: CallbackContext):
+    save_pet_weekly_history_cache(callback_context, callback_context.state["summary_query_vitals"])
+    return None
 
 pet_vitals_info_agent = LlmAgent(
     name="pet_vitals_info_agent",
@@ -14,6 +19,9 @@ pet_vitals_info_agent = LlmAgent(
         Based on the user query to get the required data to frame an answer use the tool query_information_database to which you need to pass whatever data you need to query from the database.
 
         Make sure to always pass the pet id in the query to the tool. There is also a column created_at which stores the datetime value for the saving record.
+
+        For making the response more customized use the below pet's information:
+        {pet_information}
 
         The tool will give back information in the format like:
         {
@@ -39,9 +47,10 @@ pet_vitals_info_agent = LlmAgent(
         DO NOT GIVE RAW DATA TO THE USER INSTEAD ONLY PRESENT RELEVANT PART OF THE DATA IF REQUIRED.
         DO NOT HALLUCINATE.
         DO NOT TRY PASSING TO ANOTHER AGENT.
-        FORMAT THE RESPONSE IN DETAILED FORMAT AND PRESENT THE ANALYSIS TO THE USER.
+        FORMAT THE RESPONSE IN DETAILED CUSTOMIZED FORMAT AND PRESENT THE ANALYSIS TO THE USER.
 
     """,
     tools=[query_information_database],
     output_key="summary_query_vitals",
+    after_agent_callback=after_agent_callback_method
 )

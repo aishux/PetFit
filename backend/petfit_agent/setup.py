@@ -4,6 +4,8 @@ from pytidb.embeddings import EmbeddingFunction
 from pytidb.rerankers import Reranker
 import tensorflow_hub as hub
 import os
+from google.adk.agents.callback_context import CallbackContext
+
 
 # ── CONFIG ────────────────────────────────────────────────────────────────
 TIDB_HOST = os.getenv("TIDB_HOST")
@@ -55,6 +57,24 @@ class DogBehaviourData(TableModel, table=True):
         source_field="content"
     )
 
+class Pets(TableModel, table=True):
+    __tablename__ = "Pets"
+
+    pet_id: str = Field(primary_key=True)
+    pet_type: str = Field()
+    gender: str = Field()
+    age: int = Field()
+    name: str = Field()
+    owner_id: int = Field()
+
+
+class PetWeeklyHistoryCache(TableModel, table=True):
+    __tablename__ = "pet_weekly_history_cache"
+
+    pet_id: str = Field(primary_key=True)
+    information: str = Field()
+
+
 reranker_model = Reranker(
     model_name="jina_ai/jina-reranker-m0", api_key=JINA_AI_API_KEY,
     timeout=60
@@ -63,3 +83,19 @@ reranker_model = Reranker(
 
 def get_table(table_name):
     return db.open_table(table_name)
+
+
+def save_pet_weekly_history_cache(callback_context:CallbackContext, info: str):
+    table = get_table("pet_weekly_history_cache")
+    pet_id = callback_context.state["pet_information"]["pet_id"]
+    existing_row = table.get(pet_id)
+    if existing_row:
+        existing_info = existing_row.information
+        info = existing_info + "\n\n" + info
+        table.save({"pet_id": pet_id, "information": info})
+        print("Updated data successfully!")
+    else:
+        table.insert({"pet_id": pet_id, "information": info})
+        print("Inserted data successfully!")
+    
+    return "Saved data"
