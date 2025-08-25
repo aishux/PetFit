@@ -19,7 +19,7 @@ root_agent = Agent(
 
         3. `pet_vitals_info_agent`:
         - Use this when the user explicitly or implicitly asks about their pet health condition based on tracked data (e.g., heart rate, sleep, calories, miles traveled, breathing rate).  
-        - Even if they describe a symptom (like breathing heavily), if it can be correlated to **measured vitals** from the collar/tracker, then this agent is the right choice. 
+        - Even if they describe a symptom (like breathing heavily), if it can be correlated to **measured vitals** from the collar/tracker, then this agent is the right choice.
 
         Instructions:
         - First, detect whether the query is about observed symptoms (visible signs) or about monitored vitals (data-driven health stats).  

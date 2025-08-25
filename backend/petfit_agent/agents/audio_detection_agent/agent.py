@@ -21,8 +21,6 @@ audio_detection_agent = LlmAgent(
 
        For making the response more customized use the below pet's information:
        {pet_information}
-
-       Make sure to cache the summary using the tool save_pet_weekly_history_cache.
     """,
     tools=[identify_sound_meaning, get_info_dog_behaviour],
     output_key="summary_sound_identification",

@@ -29,7 +29,6 @@ summarizer_agent = LlmAgent(
     {pet_information}
 
     DO NOT HALLUCINATE.
-    Make sure to cache the summary using the tool save_pet_weekly_history_cache.
     """,
     output_key="summarized_output",
     after_agent_callback=after_agent_callback_method

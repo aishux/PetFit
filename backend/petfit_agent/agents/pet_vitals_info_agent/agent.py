@@ -20,6 +20,8 @@ pet_vitals_info_agent = LlmAgent(
 
         Make sure to always pass the pet id in the query to the tool. There is also a column created_at which stores the datetime value for the saving record.
 
+        Whenever sleep hours data is required make sure to always have a seperate query for total sleep hours per day.
+
         For making the response more customized use the below pet's information:
         {pet_information}
 
@@ -37,11 +39,17 @@ pet_vitals_info_agent = LlmAgent(
             ]
         }
 
-        Example:
-        User query: My pet (id: DOG145) has been breathing heavily recently is there anything wrong with his heart?
+        Example1:
+        User query: My pet's (id: DOG145) heart has been beating a lot faster recently, is there anything wrong with his heart?
         Your query to tool: Fetch the heart rate data of pet id DOG145 for the past 3 days along with record creation time
         Tool returns:
         {"columns":[{"col":"heart_rate"},{"col":"created_at"}],"rows":[["100","2025-08-18 21:56:02"],["120","2025-08-18 22:56:02"],["66","2025-08-18 23:56:02"],["74","2025-08-19 00:56:02"],["63","2025-08-19 01:56:02"],["75","2025-08-19 02:56:02"],["106","2025-08-19 03:56:02"],["93","2025-08-19 04:56:02"],["99","2025-08-19 05:56:02"],["114","2025-08-19 06:56:02"],["99","2025-08-19 07:56:02"],["91","2025-08-19 08:56:02"],["69","2025-08-19 09:56:02"],["119","2025-08-19 10:56:02"],["112","2025-08-19 11:56:02"],["83","2025-08-19 12:56:02"],["109","2025-08-19 13:56:02"],["91","2025-08-19 14:56:02"],["106","2025-08-19 15:56:02"],["91","2025-08-21 16:56:02"],["62","2025-08-21 17:56:02"]]}
+
+        Example2:
+        User query: My pet's (id: DOG145) heart has been beating a lot faster recently, and also he seems to have irregular sleep time, is there anything wrong with his heart?
+        You have to make 2 queries to the tool: 
+        1) Fetch the heart rate data of pet id DOG145 for the past 3 days along with record creation time
+        2) Fetch the total sleep hours data for each day of pet id DOG145 for the past 3 days.
 
         Then you respond to the user based on your analysis and if there is any issue explain to the user.
         DO NOT GIVE RAW DATA TO THE USER INSTEAD ONLY PRESENT RELEVANT PART OF THE DATA IF REQUIRED.

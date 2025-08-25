@@ -89,13 +89,14 @@ def save_pet_weekly_history_cache(callback_context:CallbackContext, info: str):
     table = get_table("pet_weekly_history_cache")
     pet_id = callback_context.state["pet_information"]["pet_id"]
     existing_row = table.get(pet_id)
+    user_query = callback_context.user_content.parts[0].text
     if existing_row:
         existing_info = existing_row.information
-        info = existing_info + "\n\n" + info
+        info = existing_info + "\n\n User Query: " + user_query + "\n Agent Response: " + info
         table.save({"pet_id": pet_id, "information": info})
         print("Updated data successfully!")
     else:
-        table.insert({"pet_id": pet_id, "information": info})
+        table.insert({"pet_id": pet_id, "information": "User Query: " + user_query + "\n" + info})
         print("Inserted data successfully!")
     
     return "Saved data"
