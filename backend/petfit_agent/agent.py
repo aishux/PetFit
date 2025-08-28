@@ -2,6 +2,7 @@ from google.adk.agents import Agent
 from .agents.symptom_remedy_agent.agent import symptom_remedy_agent
 from .agents.audio_detection_agent.agent import audio_detection_agent
 from .agents.pet_vitals_info_agent.agent import pet_vitals_info_agent
+from .agents.pet_mood_identification_agent.agent import pet_mood_identification_agent
 from .tools import *
 
 root_agent = Agent(
@@ -21,6 +22,9 @@ root_agent = Agent(
         - Use this when the user explicitly or implicitly asks about their pet health condition based on tracked data (e.g., heart rate, sleep, calories, miles traveled, breathing rate).  
         - Even if they describe a symptom (like breathing heavily), if it can be correlated to **measured vitals** from the collar/tracker, then this agent is the right choice.
 
+        4. `pet_mood_identification_agent`
+        - Use this when the user provides an image of their pet and have the intention to identify the mood of their pet.
+
         Instructions:
         - First, detect whether the query is about observed symptoms (visible signs) or about monitored vitals (data-driven health stats).  
         - If the query matches both (symptom + vitals), prefer `pet_vitals_info_agent` since vitals provide measurable evidence.
@@ -31,7 +35,8 @@ root_agent = Agent(
     sub_agents=[
         symptom_remedy_agent,
         audio_detection_agent,
-        pet_vitals_info_agent
+        pet_vitals_info_agent,
+        pet_mood_identification_agent
     ],
 
     tools=[

@@ -5,6 +5,7 @@ from pytidb.rerankers import Reranker
 import tensorflow_hub as hub
 import os
 from google.adk.agents.callback_context import CallbackContext
+from typing import List, Optional
 
 
 # ── CONFIG ────────────────────────────────────────────────────────────────
@@ -26,6 +27,13 @@ yamnet_model = hub.load("petfit_agent/yamnet")
 text_embed = EmbeddingFunction(
     model_name="jina_ai/jina-embeddings-v3",
     api_key=JINA_AI_API_KEY,
+    timeout=90
+)
+
+image_embed = EmbeddingFunction(
+    model_name="jina_ai/jina-embeddings-v4",
+    api_key=JINA_AI_API_KEY,
+    multimodal=True,
     timeout=90
 )
 
@@ -73,6 +81,20 @@ class PetWeeklyHistoryCache(TableModel, table=True):
 
     pet_id: str = Field(primary_key=True)
     information: str = Field()
+
+
+class PetExpressionsIdentification(TableModel, table=True):
+    __tablename__ = "pet_expression_identification"
+
+    id: int = Field(primary_key=True)
+    expression_identification: str = Field()
+    image_uri: str = Field()
+    image_vec: Optional[List[float]] = image_embed.VectorField(
+            distance_metric=DistanceMetric.L2,
+            source_field="image_uri",
+            source_type="image",
+        )
+
 
 
 reranker_model = Reranker(
