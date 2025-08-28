@@ -2,6 +2,12 @@ from google.adk.agents import Agent
 from .tools import identify_skin_disease
 from google.adk.tools.agent_tool import AgentTool
 from petfit_agent.setup import search_agent
+from petfit_agent.setup import save_pet_weekly_history_cache
+from google.adk.agents.callback_context import CallbackContext
+
+def after_agent_callback_method(callback_context: CallbackContext):
+    save_pet_weekly_history_cache(callback_context, callback_context.state["summary_skin_disease_identification"])
+    return None
 
 pet_skin_disease_detection_agent = Agent(
     name="pet_skin_disease_detection_agent",
@@ -19,4 +25,5 @@ pet_skin_disease_detection_agent = Agent(
     """,
     tools=[identify_skin_disease, AgentTool(search_agent)],
     output_key="summary_skin_disease_identification",
+    after_agent_callback=after_agent_callback_method
 )
