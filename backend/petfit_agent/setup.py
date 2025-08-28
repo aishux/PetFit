@@ -6,6 +6,8 @@ import tensorflow_hub as hub
 import os
 from google.adk.agents.callback_context import CallbackContext
 from typing import List, Optional
+from google.adk.agents import Agent
+from google.adk.tools import google_search
 
 
 # ── CONFIG ────────────────────────────────────────────────────────────────
@@ -94,7 +96,40 @@ class PetExpressionsIdentification(TableModel, table=True):
             source_field="image_uri",
             source_type="image",
         )
+    
+class DogSkinDiseaseDetection(TableModel, table=True):
+    __tablename__ = "dog_skin_disease_detection"
 
+    id: int = Field(primary_key=True)
+    skin_disease: str = Field()
+    image_uri: str = Field()
+    image_vec: Optional[List[float]] = image_embed.VectorField(
+            distance_metric=DistanceMetric.L2,
+            source_field="image_uri",
+            source_type="image",
+        )
+
+class CatSkinDiseaseDetection(TableModel, table=True):
+    __tablename__ = "cat_skin_disease_detection"
+
+    id: int = Field(primary_key=True)
+    skin_disease: str = Field()
+    image_uri: str = Field()
+    image_vec: Optional[List[float]] = image_embed.VectorField(
+            distance_metric=DistanceMetric.L2,
+            source_field="image_uri",
+            source_type="image",
+        )
+
+
+search_agent = Agent(
+    name="search_agent",
+    model="gemini-2.0-flash",
+    description="Specialist agent for web search",
+    instruction="Use Google Search to fetch information for the given query.",
+    tools=[google_search],
+    output_key="search_results",
+)
 
 
 reranker_model = Reranker(

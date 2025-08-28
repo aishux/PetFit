@@ -22,7 +22,7 @@ def extract_yamnet_embedding(audio_bytes):
 
 
 def identify_sound_meaning(tool_context: ToolContext):
-    """Tool to list available artifacts for the user."""
+    """Tool identify the meaning of the sount."""
     try:
         for part in tool_context.user_content.parts:
             if hasattr(part, "inline_data") and part.inline_data:
