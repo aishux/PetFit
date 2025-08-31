@@ -4,6 +4,7 @@ from .agents.audio_detection_agent.agent import audio_detection_agent
 from .agents.pet_vitals_info_agent.agent import pet_vitals_info_agent
 from .agents.pet_mood_identification_agent.agent import pet_mood_identification_agent
 from .agents.pet_skin_disease_detection_agent.agent import pet_skin_disease_detection_agent
+from .agents.report_generation_agent.agent import report_generation_agent
 from .tools import *
 
 root_agent = Agent(
@@ -29,6 +30,9 @@ root_agent = Agent(
         5. `pet_skin_disease_detection_agent`
         - Use this when the user provides an image of their pet's skin and enquires about the possibility of any skin disease to their pet.
 
+        6. `report_generation_agent`
+        - Use this when the user asks to generate a weekly report of their pet.
+
         Instructions:
         - First, detect whether the query is about observed symptoms (visible signs) or about monitored vitals (data-driven health stats).  
         - If the query matches both (symptom + vitals), prefer `pet_vitals_info_agent` since vitals provide measurable evidence.
@@ -41,7 +45,8 @@ root_agent = Agent(
         audio_detection_agent,
         pet_vitals_info_agent,
         pet_mood_identification_agent,
-        pet_skin_disease_detection_agent
+        pet_skin_disease_detection_agent,
+        report_generation_agent
     ],
 
     tools=[

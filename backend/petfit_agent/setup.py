@@ -78,6 +78,15 @@ class Pets(TableModel, table=True):
     owner_id: int = Field()
 
 
+class Users(TableModel, table=True):
+    __tablename__ = "Users"
+
+    user_id: int = Field(primary_key=True)
+    first_name: str = Field()
+    last_name: str = Field()
+    email: str = Field()
+
+
 class PetWeeklyHistoryCache(TableModel, table=True):
     __tablename__ = "pet_weekly_history_cache"
 
