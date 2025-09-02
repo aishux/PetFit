@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Pet - PetFit AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #92ffc0, #002661);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 18px;
+      color: #333;
+    }
+
+    h3 {
+      margin-top: 24px;
+      margin-bottom: 12px;
+      font-size: 18px;
+      color: #444;
+    }
+
+    .input-field {
+      margin: 10px 0;
+    }
+
+    .input-field input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #4CAF50;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #43a047;
+    }
+
+    .pet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .pet-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9f9f9;
+      padding: 10px 14px;
+      margin: 6px 0;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .pet-list li button {
+      width: auto;
+      padding: 6px 12px;
+      font-size: 13px;
+      background: #2196F3;
+    }
+
+    .pet-list li button:hover {
+      background: #1976D2;
+    }
+
+    .collar-section {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .collar-section button {
+      background: #FF9800;
+    }
+
+    .collar-section button:hover {
+      background: #F57C00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>My Pets</h2>
+
+    <!-- Pet List -->
+    <ul id="pet-list" class="pet-list">
+      <!-- Pets will be listed here -->
+    </ul>
+
+    <!-- Add Pet Form -->
+    <h3>Add New Pet</h3>
+    <form id="add-pet-form">
+      <div class="input-field">
+        <input type="text" id="pet-name" placeholder="Pet Name" required>
+      </div>
+      <div class="input-field">
+        <input type="text" id="pet-type" placeholder="Pet Type (Dog, Cat...)" required>
+      </div>
+      <div class="input-field">
+        <input type="number" id="pet-age" placeholder="Age" required>
+      </div>
+      <button type="submit">Add Pet</button>
+    </form>
+
+    <!-- Collar Section -->
+    <div class="collar-section">
+      <h3>Connect Pet’s Collar</h3>
+      <button id="connect-collar-btn">🔗 Connect Collar</button>
+    </div>
+  </div>
+
+  <script>
+    const petList = document.getElementById("pet-list");
+    const addPetForm = document.getElementById("add-pet-form");
+
+    let pets = [];
+
+    // Render pet list
+    function renderPets() {
+      petList.innerHTML = "";
+      pets.forEach((pet, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${pet.name} (${pet.type}, Age: ${pet.age})
+          <button onclick="editPet(${index})">Edit</button>
+        `;
+        petList.appendChild(li);
+      });
+    }
+
+    // Add pet
+    addPetForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("pet-name").value;
+      const type = document.getElementById("pet-type").value;
+      const age = document.getElementById("pet-age").value;
+
+      pets.push({ name, type, age });
+      renderPets();
+      addPetForm.reset();
+    });
+
+    // Edit pet
+    window.editPet = (index) => {
+      const pet = pets[index];
+      const newName = prompt("Edit Pet Name:", pet.name);
+      const newType = prompt("Edit Pet Type:", pet.type);
+      const newAge = prompt("Edit Pet Age:", pet.age);
+
+      if (newName && newType && newAge) {
+        pets[index] = { name: newName, type: newType, age: newAge };
+        renderPets();
+      }
+    };
+
+    // Connect collar button
+    document.getElementById("connect-collar-btn").addEventListener("click", () => {
+      alert("Searching for nearby collars… (demo)");
+    });
+  </script>
+
+</body>
+</html>
