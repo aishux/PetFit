@@ -500,9 +500,10 @@
     }
 
     function addMessage(content, isUser = false) {
-      const messageElement = createMessageElement(content, isUser);
-      chatContainer.appendChild(messageElement);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
+        const messageElement = createMessageElement(content, isUser);
+        chatContainer.appendChild(messageElement);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        return messageElement;
     }
 
     function showTypingIndicator() {
@@ -547,8 +548,33 @@
     });
 
     setTimeout(() => {
-      addMessage("Hello! I'm your AI assistant. How can I help you today?");
-    }, 500);
+        const msg = addMessage("🐾 Hello! I'm your AI assistant. Could you please select your pet?");
+        const bubble = msg.querySelector('.message-bubble'); // ⬅️ put options inside the bubble
+      
+        const options = ["Dog", "Cat", "Bird", "Hamster"];
+        const optionsContainer = document.createElement("div");
+        optionsContainer.className = "options-container";
+      
+        // fallback inline styles in case your CSS didn't load
+        optionsContainer.style.display = "flex";
+        optionsContainer.style.gap = "10px";
+        optionsContainer.style.flexWrap = "nowrap";
+        optionsContainer.style.marginTop = "12px"; 
+      
+        options.forEach(pet => {
+          const btn = document.createElement("button");
+          btn.textContent = pet;
+          btn.className = "option-button";
+          btn.onclick = () => {
+            addMessage(pet, true);
+            addMessage(`Absolutely! How may I assist you with your ${pet.toLowerCase()} today?`);
+            optionsContainer.remove();
+          };
+          optionsContainer.appendChild(btn);
+        });
+      
+        bubble.appendChild(optionsContainer);
+      }, 500);      
 
     const fileInput = document.getElementById('fileInput');
     const attachButton = document.getElementById('attachButton');
