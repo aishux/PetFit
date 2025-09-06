@@ -38,55 +38,24 @@
         </div>
         <ul class="navigation-menu">
             <li><a href="{% url "mainpage" %}">Home</a></li>
-                <li>
-                <a href="#">Add Pet </a>
-                <ul class="subnav">
-                    <li class="card-med" id="sup-dog">
-                        <div class="card-image"><img src="https://ouch-cdn2.icons8.com/qPvaAv2gxwM3l0z7dl_eoh9v6h58HlzewBUfEgX6AZE/rs:fit:368:386/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvMTIv/ZmM4YjNlYmItMDNj/Ni00NGM3LTliNGUt/YTUyOWUzOGU4NTE2/LnBuZw.png"></div>
-                        <a href="{% url "addPet" %}">   
-                        <span>Dogs</span>
-                            <span>Add Now <span class="material-symbols-outlined">
-                                    arrow_forward
-                                </span></span>
-                        </a>
-                    </li>
-                    <li class="card-med" id="sup-cat">
-                        <div class="card-image"><img src="https://ouch-cdn2.icons8.com/US6gJ6fHUOJqruLB7KDe5zEa82iDSp7OdO-bv-aLtvU/rs:fit:368:310/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNjU5/LzdmOWU1ZjU0LTMx/ZDQtNDgwNS1iM2E2/LWM3NzgyMTcyNzJh/NC5wbmc.png"></div>
-                        <a href="{% url "addPet" %}">
-                            <span>Cats</span>
-                            <span>Add Now <span class="material-symbols-outlined">
-                                    arrow_forward
-                                </span></span>
-                        </a>
-                    </li>
-                    <li class="card-med" id="sup-bird">
-                        <div class="card-image"><img src="{% static "petapp/images/bird.png" %}"></div>
-                        <a href="{% url "addPet" %}">
-                            <span>Birds</span>
-                            <span>Add Now <span class="material-symbols-outlined">
-                                    arrow_forward
-                                </span></span>
-                        </a>
-                    </li>
-                    <li class="card-med" id="sup-fish">
-                            <div class="card-image"><img src="{% static "petapp/images/hamster.png" %}"></div>
-                            <a href="{% url "addPet" %}">
-                            <span>Hamster</span>
-                            <span>Add Now <span class="material-symbols-outlined">
-                                    arrow_forward
-                                </span></span>
-                        </a>
-                    </li>
-                </ul>
+                <li><a href="{% url "addPet" %}">Add Pet</a></li>
                 <li><a href="{% url "chat" %}">PetFit Agent</a></li>
                 <li><a href="{% url "dashboard" %}">Dashboard</a></li>
         </ul>
         <div id="utility">
-            <a href="{% url "login" %}" class="tooltip">
+            {% if request.user.is_authenticated %}
+            <a href="{% url "logout" %}" class="tooltip">
               <span class="material-symbols-outlined">logout</span>
               <span class="tooltip-text">Logout</span>
             </a>
-        </div>          
+            {% else %}
+            <div class="btn-group">
+                <button class="btn-outline-dark btn-hover-color" onclick="window.location.href='{% url 'login' %}'">
+                    <span class="material-symbols-outlined">login</span> Login/Signup
+                </button>
+            </div>
+            {% endif %}
+        </div>
     </nav>
 </header>
 <section class="hero">

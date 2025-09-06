@@ -49,10 +49,7 @@ def handleLogout(request):
 
 
 def mainpage(request):
-    if request.user.is_authenticated:
-        return render(request, "index.html")
-    else:
-        return HttpResponseRedirect(reverse("login"))
+    return render(request, "index.html")
 
 def addPet(request):
     return render(request, "add-pet.html")
@@ -61,4 +58,7 @@ def chat(request):
     return render(request, "chat.html")
 
 def dashboard(request):
-    return render(request, "dashboard.html")
+    if request.user.is_authenticated:
+        return render(request, "dashboard.html")
+    else:
+        return HttpResponseRedirect(reverse("login"))
