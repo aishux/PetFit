@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.urls import reverse
 from django.contrib import auth
 from django.contrib import messages
 from .models import *
+from django.utils import timezone
+from datetime import timedelta
+from django.db.models import Avg, Sum
+
+
 
 def handleLogin(request):
     if request.method == "POST":
@@ -83,7 +88,8 @@ def chat(request):
 
 def dashboard(request):
     if request.user.is_authenticated:
-        return render(request, "dashboard.html")
+        pets = Pet.objects.filter(owner_id=request.user.id)
+        return render(request, "dashboard.html", {"all_pets": pets})
     else:
         return HttpResponseRedirect(reverse("login"))
     
@@ -130,3 +136,96 @@ def updatePetInfo(request):
         messages.success(request, "Pet Data updated successfully!")
 
     return HttpResponseRedirect(reverse("addPet"))
+
+
+def chartData(request, pet_id):
+    today = timezone.now().date()
+    week_ago = today - timedelta(days=7)
+
+    # Aggregate by day
+    pet_data = (
+        PetData.objects.filter(
+            pet_id=pet_id,
+            created_at__date__range=[week_ago, today]
+        )
+        .values("created_at__date")
+        .annotate(
+            avg_heart_rate=Avg("heart_rate"),
+            total_sleep_hours=Sum("sleep_hours"),
+            total_miles_travelled=Sum("miles_travelled"),
+            total_calories_burned=Sum("calories_burned"),
+        )
+        .order_by("created_at__date")
+    )
+
+    # Labels = days
+    labels = [str(d["created_at__date"]) for d in pet_data]
+
+    heart_rate = [d["avg_heart_rate"] or 0 for d in pet_data]
+    sleep_hours = [d["total_sleep_hours"] or 0 for d in pet_data]
+    miles_travelled = [d["total_miles_travelled"] or 0 for d in pet_data]
+    calories_burned = [d["total_calories_burned"] or 0 for d in pet_data]
+
+    max_calories = max(calories_burned) if calories_burned else 1
+
+    data = {
+        "labels": labels,
+
+        "bar_heart_rate": {
+            "labels": labels,
+            "datasets": [{"label": "Avg Heart Rate", "data": heart_rate, "backgroundColor": "#DA7E66"}],
+        },
+
+        "bar_sleep_hours": {
+            "labels": labels,
+            "datasets": [{"label": "Total Sleep Hours", "data": sleep_hours, "backgroundColor": "#DA7E66"}]
+        },
+
+        "line_miles_travelled": {
+            "labels": labels,
+            "datasets": [{"label": "Miles Travelled", "data": miles_travelled}]
+        },
+
+        "radar_comparison": {
+            "labels": ["Heart Rate", "Sleep Hours", "Miles Travelled", "Calories Burned"],
+            "datasets": [{
+                "label": "Weekly Avg",
+                "data": [
+                    sum(heart_rate) / len(heart_rate) if heart_rate else 0,
+                    sum(sleep_hours) / len(sleep_hours) if sleep_hours else 0,
+                    sum(miles_travelled) / len(miles_travelled) if miles_travelled else 0,
+                    sum(calories_burned) / len(calories_burned) if calories_burned else 0
+                ],
+                "backgroundColor": "rgba(218, 126, 102, 0.2)", 
+                "borderColor": "#DA7E66"
+            }]
+        },
+
+        "pie_distribution": {
+            "labels": ["Heart Rate", "Sleep Hours", "Miles Travelled", "Calories Burned"],
+            "datasets": [{
+                "data": [
+                    sum(heart_rate),
+                    sum(sleep_hours),
+                    sum(miles_travelled),
+                    sum(calories_burned)
+                ],
+                "backgroundColor": ["#f6e5dfff", "#DA7E66", "#f4a688", "#ffd1c1"]
+            }]
+        },
+
+        "bubble_chart": {
+            "datasets": [{
+                "label": "Calories vs Miles vs HR",
+                "data": [
+                    {"x": m, "y": s, "r": (c / max_calories) * 20}  # max bubble = 20px
+                    for m, s, c in zip(miles_travelled, sleep_hours, calories_burned)
+                ],
+                "backgroundColor": '#DA7E66',
+            }]
+        }
+    }
+
+    print(data)
+
+    return JsonResponse(data)

@@ -101,20 +101,20 @@
     <div class="pet-selector">
       <label for="petSelect">Select Pet: </label>
       <select id="petSelect">
-        <option>Buddy (Dog)</option>
-        <option>Whiskers (Cat)</option>
-        <option>Poppy (Bird)</option>
-        <option>Goldie (Hamster)</option>
+        {% for pet in all_pets %}
+        <option id="{{pet.pet_id}}">{{pet.name}} ({{pet.pet_type}})</option>
+        {% endfor %}
+        <option id="CAT67890">Billu (Cat)</option>
       </select>
     </div>
 
     <div class="charts-grid">
       <div class="chart-card">
-        <h3>Activity Levels</h3>
+        <h3>Average Heart Rate</h3>
         <canvas id="barChart"></canvas>
       </div>
       <div class="chart-card">
-        <h3>Heart Rate Trend</h3>
+        <h3>Miles Travel</h3>
         <canvas id="lineChart"></canvas>
       </div>
       <div class="chart-card">
@@ -126,7 +126,7 @@
         <canvas id="radarChart"></canvas>
       </div>
       <div class="chart-card">
-        <h3>Activity Levels</h3>
+        <h3>Sleep Pattern</h3>
         <canvas id="barChart2"></canvas>
       </div>
       <div class="chart-card">
@@ -168,92 +168,78 @@
   </footer>
 
   <!-- Chart Scripts -->
-  <script>
-    // Bar Chart
-    new Chart(document.getElementById("barChart"), {
-      type: "bar",
-      data: {
-        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        datasets: [{
-          label: "Activity",
-          data: [12, 19, 8, 15, 22, 30, 18],
-          backgroundColor: "#DA7E66"
-        }]
-      }
-    });
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const petSelect = document.getElementById("petSelect");
+  let charts = []; // store chart instances so we can destroy/recreate
 
-    // Line Chart
-    new Chart(document.getElementById("lineChart"), {
-      type: "line",
-      data: {
-        labels: ["6 AM", "9 AM", "12 PM", "3 PM", "6 PM", "9 PM"],
-        datasets: [{
-          label: "Heart Rate",
-          data: [80, 95, 100, 85, 90, 75],
-          borderColor: "#DA7E66",
-          fill: false
-        }]
-      }
-    });
+  function loadCharts(petId) {
+    const url = `/chartdata/${petId}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        // Destroy old charts if any (prevents overlapping)
+        charts.forEach(chart => chart.destroy());
+        charts = [];
 
-    // Pie Chart
-    new Chart(document.getElementById("pieChart"), {
-      type: "pie",
-      data: {
-        labels: ["Protein", "Carbs", "Fats"],
-        datasets: [{
-          data: [50, 30, 20],
-          backgroundColor: ["#DA7E66", "#f4a688", "#ffd1c1"]
-        }]
-      }
-    });
+        // Bar Chart - Heart Rate
+        charts.push(new Chart(document.getElementById("barChart"), {
+          type: "bar",
+          data: data.bar_heart_rate,
+        }));
 
-    // Radar Chart
-    new Chart(document.getElementById("radarChart"), {
-      type: "radar",
-      data: {
-        labels: ["Energy", "Sleep", "Hydration", "Playfulness", "Calmness"],
-        datasets: [{
-          label: "Vitals",
-          data: [8, 6, 7, 9, 5],
-          backgroundColor: "rgba(218, 126, 102, 0.2)",
-          borderColor: "#DA7E66"
-        }]
-      }
-    });
+        // Line Chart - Miles
+        charts.push(new Chart(document.getElementById("lineChart"), {
+          type: "line",
+          data: {
+            labels: data.labels,
+            datasets: [{
+              label: "Miles Travelled",
+              data: data.line_miles_travelled.datasets[0].data,
+              borderColor: "#DA7E66",
+              fill: false
+            }]
+          }
+        }));
 
-    // Bar Chart
-    new Chart(document.getElementById("barChart2"), {
-        type: "bar",
-        data: {
-          labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-          datasets: [{
-            label: "Activity",
-            data: [12, 19, 8, 15, 22, 30, 18],
-            backgroundColor: "#DA7E66"
-          }]
-        }
-      });
+        // Pie Chart - Distribution
+        charts.push(new Chart(document.getElementById("pieChart"), {
+          type: "pie",
+          data: data.pie_distribution,
+        }));
 
-    // Bubble Chart
-    new Chart(document.getElementById('bubbleChart'), {
-        type: 'bubble',
-        data: {
-        datasets: [{
-            label: 'Activity Levels',
-            data: [
-            {x: 10, y: 20, r: 15},
-            {x: 15, y: 10, r: 10},
-            {x: 25, y: 8, r: 12},
-            {x: 32, y: 18, r: 9}
-            ],
-            backgroundColor: '#DA7E66'
-        }]
-        },
-        options: { responsive: true }
-    });
-  
+        // Radar Chart - Vitals
+        charts.push(new Chart(document.getElementById("radarChart"), {
+          type: "radar",
+          data: data.radar_comparison,
+        }));
 
-  </script>
-</body>
-</html>
+        // Bar Chart 2 - Sleep Hours
+        charts.push(new Chart(document.getElementById("barChart2"), {
+          type: "bar",
+          data: data.bar_sleep_hours,
+        }));
+
+        // Bubble Chart
+        charts.push(new Chart(document.getElementById("bubbleChart"), {
+          type: "bubble",
+          data: data.bubble_chart,
+          options: { responsive: true }
+        }));
+      })
+      .catch(err => console.error("Error fetching chart data:", err));
+  }
+
+  // Load charts for first pet on page load
+  if (petSelect.options.length > 0) {
+    const firstPetId = petSelect.options[0].id;
+    loadCharts(firstPetId);
+  }
+
+  // Reload charts when another pet is selected
+  petSelect.addEventListener("change", function () {
+    const selectedPetId = petSelect.options[petSelect.selectedIndex].id;
+    loadCharts(selectedPetId);
+  });
+});
+</script>

@@ -26,3 +26,17 @@ class Pet(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.pet_id})"
+
+
+class PetData(models.Model):
+    pet_id = models.CharField(max_length=255, blank=True, null=True)
+    id = models.CharField(primary_key=True, max_length=255)
+    created_at = models.DateTimeField(blank=True, null=True)
+    heart_rate = models.IntegerField(blank=True, null=True)
+    sleep_hours = models.FloatField(blank=True, null=True)
+    miles_travelled = models.FloatField(blank=True, null=True)
+    calories_burned = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'pet_data'
