@@ -27,4 +27,6 @@ urlpatterns = [
     path('addpet/', addPet, name="addPet"),
     path('chat/', chat, name="chat"),
     path('dashboard/', dashboard, name="dashboard"),
+    path('petinfo/<str:pet_id>', petInfo, name="petInfo"),
+    path('updatepetinfo/', updatePetInfo, name="updatePetInfo"),
 ]
