@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,11 +83,11 @@ WSGI_APPLICATION = 'PetFit.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django_tidb",
-        "HOST": "gateway01.ap-southeast-1.prod.aws.tidbcloud.com",
-        "PORT": 4000,
-        "USER": "3aF8xoBan195AQW.root",
-        "PASSWORD": "ajHz98Rj71UHDivt",
-        "NAME": "PetFit",
+        "HOST": os.environ.get("TIDB_HOST"),
+        "PORT": os.environ.get("TIDB_PORT"),
+        "USER": os.environ.get("TIDB_USER"),
+        "PASSWORD": os.environ.get("TIDB_PASSWORD"),
+        "NAME": os.environ.get("TIDB_DB_NAME"),
         "OPTIONS": {
             "charset": "utf8mb4",
         },

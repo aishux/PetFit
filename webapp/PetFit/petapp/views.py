@@ -84,7 +84,11 @@ def addPet(request):
     return render(request, "add-pet.html", {"all_pets":all_pets})
 
 def chat(request):
-    return render(request, "chat.html")
+    if request.user.is_authenticated:
+        pets = Pet.objects.filter(owner_id=request.user.id)
+        return render(request, "chat.html", {"all_pets": pets})
+    else:
+        return HttpResponseRedirect(reverse("login"))
 
 def dashboard(request):
     if request.user.is_authenticated:
@@ -225,7 +229,5 @@ def chartData(request, pet_id):
             }]
         }
     }
-
-    print(data)
 
     return JsonResponse(data)

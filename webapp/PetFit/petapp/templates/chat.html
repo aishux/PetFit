@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,9 +25,9 @@
       --bot-message-bg: #f1f5f9;
       --user-message-bg: #C5AD90;
       --border-color: #e2e8f0;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
     }
 
     [data-theme="dark"] {
@@ -99,9 +100,20 @@
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.7; }
-      100% { transform: scale(1); opacity: 1; }
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .controls {
@@ -219,12 +231,25 @@
       animation: typingBounce 1.4s infinite ease-in-out;
     }
 
-    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    .typing-dot:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+
+    .typing-dot:nth-child(2) {
+      animation-delay: -0.16s;
+    }
 
     @keyframes typingBounce {
-      0%, 80%, 100% { transform: scale(0); }
-      40% { transform: scale(1); }
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0);
+      }
+
+      40% {
+        transform: scale(1);
+      }
     }
 
     .input-container {
@@ -323,56 +348,61 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="banner">Because Every Pet Deserves Free Care.</div>
     <nav>
-          
-        <div id="logo">
-            <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8 32H0V21.9849C0 17.1239 4.0116 13.1839 8.96 13.1839H15.2V0.468341C15.2 0.251458 15.3792 0.0754376 15.6 0.0754376C15.7184 0.0754376 15.8308 0.127301 15.9068 0.216883L17.3616 1.92719C18.402 1.07577 19.74 0.563816 21.2 0.563816H22C23.442 0.563816 24.7656 1.06359 25.8 1.89654L27.2932 0.14066C27.3692 0.0514706 27.4812 0 27.6 0C27.8208 0 28 0.175628 28 0.392904V15.3896H23.36C17.528 15.3896 12.8 20.0337 12.8 25.7623V32Z" fill="#45413E" />
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M29.76 17.0569V12.0875C29.76 12.0836 29.76 12.0797 29.76 12.0758V6.79004C29.76 6.57435 29.9392 6.4 30.16 6.4C30.266 6.4 30.3676 6.44095 30.4424 6.51389L31.9576 7.98784C32.7864 7.42501 33.7936 7.09504 34.88 7.09504C35.97 7.09504 36.9808 7.42735 37.8112 7.99369L39.3176 6.52793C39.3924 6.45499 39.494 6.41404 39.6 6.41404C39.8208 6.41404 40 6.58878 40 6.80408V23.2632C40 28.0883 35.9884 32 31.04 32H14.4V25.7938C14.4 20.969 18.4116 17.0569 23.36 17.0569H29.76Z" fill="#45413E" />
-            </svg>
 
-            PetFit Ai
-        </div>
-        <ul class="navigation-menu">
-            <li><a href="{% url "mainpage" %}">Home</a></li>
-                <li><a href="{% url "addPet" %}">Add Pet</a></li>
-                <li><a href="{% url "chat" %}">PetFit Agent</a></li>
-                <li><a href="{% url "dashboard" %}">Dashboard</a></li>
-        </ul>
-        <div id="utility">
-            {% if request.user.is_authenticated %}
-            <a href="{% url "logout" %}" class="tooltip">
-              <span class="material-symbols-outlined">logout</span>
-              <span class="tooltip-text">Logout</span>
-            </a>
-            {% else %}
-            <div class="btn-group">
-                <button class="btn-outline-dark btn-hover-color" onclick="window.location.href='{% url 'login' %}'">
-                    <span class="material-symbols-outlined">login</span> Login/Signup
-                </button>
-            </div>
-            {% endif %}
-        </div>
-    </nav>
-</header>
-  <div class="container">
-    <section class="header" style="padding: 13px 30px 13px 0 !important;">
-        <div class="header-title">
-          <h1>AI Assistant</h1>
-          <div class="bot-status">
-            <div class="status-indicator"></div>
-            <span>Online</span>
-          </div>
-        </div>
-        <div class="controls">
-          <button class="theme-toggle" aria-label="Toggle theme">
-            <i class="fas fa-moon"></i>
+      <div id="logo">
+        <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M12.8 32H0V21.9849C0 17.1239 4.0116 13.1839 8.96 13.1839H15.2V0.468341C15.2 0.251458 15.3792 0.0754376 15.6 0.0754376C15.7184 0.0754376 15.8308 0.127301 15.9068 0.216883L17.3616 1.92719C18.402 1.07577 19.74 0.563816 21.2 0.563816H22C23.442 0.563816 24.7656 1.06359 25.8 1.89654L27.2932 0.14066C27.3692 0.0514706 27.4812 0 27.6 0C27.8208 0 28 0.175628 28 0.392904V15.3896H23.36C17.528 15.3896 12.8 20.0337 12.8 25.7623V32Z"
+            fill="#45413E" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M29.76 17.0569V12.0875C29.76 12.0836 29.76 12.0797 29.76 12.0758V6.79004C29.76 6.57435 29.9392 6.4 30.16 6.4C30.266 6.4 30.3676 6.44095 30.4424 6.51389L31.9576 7.98784C32.7864 7.42501 33.7936 7.09504 34.88 7.09504C35.97 7.09504 36.9808 7.42735 37.8112 7.99369L39.3176 6.52793C39.3924 6.45499 39.494 6.41404 39.6 6.41404C39.8208 6.41404 40 6.58878 40 6.80408V23.2632C40 28.0883 35.9884 32 31.04 32H14.4V25.7938C14.4 20.969 18.4116 17.0569 23.36 17.0569H29.76Z"
+            fill="#45413E" />
+        </svg>
+
+        PetFit Ai
+      </div>
+      <ul class="navigation-menu">
+        <li><a href="{% url "mainpage" %}">Home</a></li>
+        <li><a href="{% url "addPet" %}">Add Pet</a></li>
+        <li><a href="{% url "chat" %}">PetFit Agent</a></li>
+        <li><a href="{% url "dashboard" %}">Dashboard</a></li>
+      </ul>
+      <div id="utility">
+        {% if request.user.is_authenticated %}
+        <a href="{% url "logout" %}" class="tooltip">
+          <span class="material-symbols-outlined">logout</span>
+          <span class="tooltip-text">Logout</span>
+        </a>
+        {% else %}
+        <div class="btn-group">
+          <button class="btn-outline-dark btn-hover-color" onclick="window.location.href='{% url 'login' %}'">
+            <span class="material-symbols-outlined">login</span> Login/Signup
           </button>
         </div>
-      </section>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <section class="header" style="padding: 13px 30px 13px 0 !important;">
+      <div class="header-title">
+        <h1>AI Assistant</h1>
+        <div class="bot-status">
+          <div class="status-indicator"></div>
+          <span>Online</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </section>
 
     <div class="chat-container" id="chatContainer">
       <!-- Messages will be added here -->
@@ -386,29 +416,29 @@
       </div>
     </div>
 
-    <div class="input-container">
-        <div class="input-wrapper">
-          <input type="text" class="message-input" placeholder="Type your message..." aria-label="Message input">
-      
-          <div class="action-buttons">
-            <!-- hidden file input -->
-            <input type="file" id="fileInput" accept="image/*" style="display: none;" />
-      
-            <!-- paperclip button triggers file input -->
-            <button class="action-button" aria-label="Add attachment" id="attachButton">
-              <i class="fas fa-paperclip"></i>
-            </button>
-      
-            <button class="action-button" aria-label="Voice input">
-              <i class="fas fa-microphone"></i>
-            </button>
-            <button class="send-button">
-              <span>Send</span>
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </div>
+    <div class="input-container" id="queryInputContainer">
+      <div class="input-wrapper">
+        <input type="text" class="message-input" placeholder="Type your message..." aria-label="Message input">
+
+        <div class="action-buttons">
+          <!-- hidden file input -->
+          <input type="file" id="fileInput" accept="image/*, audio/wav" style="display: none;" />
+
+          <!-- paperclip button triggers file input -->
+          <button class="action-button" aria-label="Add attachment" id="attachButton">
+            <i class="fas fa-paperclip"></i>
+          </button>
+
+          <button class="action-button" aria-label="Voice input">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button class="send-button">
+            <span>Send</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
         </div>
-      </div>      
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -419,43 +449,46 @@
       <li><a href="{% url "addPet" %}">Add Pet</a></li>
       <li><a href="{% url "chat" %}">PetFit Agent</a></li>
     </ul>
-  
+
     <ul>
       Resources
       <li><a href="#">Blog</a></li>
       <li><a href="#">FAQs</a></li>
       <li><a href="#">Support</a></li>
     </ul>
-  
+
     <ul>
       Account
       <li><a href="{% url "login" %}">Login</a></li>
       <li><a href="{% url "login" %}">Signup</a></li>
     </ul>
-  
+
     <ul>
       Company
       <li><a href="#">About Us</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
-  
+
   </footer>
 
   <script>
+    document.getElementById("queryInputContainer").hidden = true
     const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
     const chatContainer = document.getElementById('chatContainer');
     const messageInput = document.querySelector('.message-input');
     const sendButton = document.querySelector('.send-button');
     const typingIndicator = document.querySelector('.typing-indicator');
+    const AgentApiBaseUrl = "http://127.0.0.1:8000";
+    let attached_files = []
 
     // Theme toggling
     let isDarkTheme = false;
     themeToggle.addEventListener('click', () => {
       isDarkTheme = !isDarkTheme;
       body.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light');
-      themeToggle.innerHTML = isDarkTheme ? 
-        '<i class="fas fa-sun"></i>' : 
+      themeToggle.innerHTML = isDarkTheme ?
+        '<i class="fas fa-sun"></i>' :
         '<i class="fas fa-moon"></i>';
     });
 
@@ -463,20 +496,20 @@
     function createMessageElement(content, isUser = false) {
       const messageDiv = document.createElement('div');
       messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-      
+
       messageDiv.innerHTML = `
         <div class="avatar">${isUser ? 'U' : 'AI'}</div>
         <div class="message-bubble">${content}</div>
       `;
-      
+
       return messageDiv;
     }
 
     function addMessage(content, isUser = false) {
-        const messageElement = createMessageElement(content, isUser);
-        chatContainer.appendChild(messageElement);
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-        return messageElement;
+      const messageElement = createMessageElement(content, isUser);
+      chatContainer.appendChild(messageElement);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      return messageElement;
     }
 
     function showTypingIndicator() {
@@ -488,28 +521,12 @@
       typingIndicator.style.display = 'none';
     }
 
-    function simulateBotResponse(userMessage) {
-      showTypingIndicator();
-      
-      // Simulate varying response times
-      setTimeout(() => {
-        hideTypingIndicator();
-        const responses = [
-          "I understand you're asking about " + userMessage + ". Could you elaborate?",
-          "That's an interesting point about " + userMessage + ". Let me help you with that.",
-          "I've analyzed your message about " + userMessage + ". Here's what I think..."
-        ];
-        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-        addMessage(randomResponse);
-      }, Math.random() * 1000 + 1500);
-    }
-
     function handleSendMessage() {
       const message = messageInput.value.trim();
       if (message) {
         addMessage(message, true);
         messageInput.value = '';
-        simulateBotResponse(message);
+        getAgentResponseSSE(message)
       }
     }
 
@@ -521,48 +538,324 @@
     });
 
     setTimeout(() => {
-        const msg = addMessage("🐾 Hello! I'm your AI assistant. Could you please select your pet?");
-        const bubble = msg.querySelector('.message-bubble'); // ⬅️ put options inside the bubble
-      
-        const options = ["Dog", "Cat", "Bird", "Hamster"];
-        const optionsContainer = document.createElement("div");
-        optionsContainer.className = "options-container";
-      
-        // fallback inline styles in case your CSS didn't load
-        optionsContainer.style.display = "flex";
-        optionsContainer.style.gap = "10px";
-        optionsContainer.style.flexWrap = "nowrap";
-        optionsContainer.style.marginTop = "12px"; 
-      
-        options.forEach(pet => {
-          const btn = document.createElement("button");
-          btn.textContent = pet;
-          btn.className = "option-button";
-          btn.onclick = () => {
-            addMessage(pet, true);
-            addMessage(`Absolutely! How may I assist you with your ${pet.toLowerCase()} today?`);
-            optionsContainer.remove();
-          };
-          optionsContainer.appendChild(btn);
-        });
-      
-        bubble.appendChild(optionsContainer);
-      }, 500);      
+      const msg = addMessage("🐾 Hello! I'm your AI assistant. Could you please select your pet?");
+      const bubble = msg.querySelector('.message-bubble');
+      let options = {};
+      {% for pett in all_pets %}
+      options["{{pett.pet_id}}"] = "{{ pett.name }}";
+      {% endfor %}
+      const optionsContainer = document.createElement("div");
+      optionsContainer.className = "options-container";
+
+      // fallback inline styles in case your CSS didn't load
+      optionsContainer.style.display = "flex";
+      optionsContainer.style.gap = "10px";
+      optionsContainer.style.flexWrap = "nowrap";
+      optionsContainer.style.marginTop = "12px";
+
+      for (const [petid, name] of Object.entries(options)) {
+        const btn = document.createElement("button");
+        btn.textContent = name;
+        btn.id = petid
+        btn.className = "option-button";
+        btn.onclick = () => {
+          addMessage(name, true);
+          addMessage(`Thanks! How may I assist you with your ${name.toLowerCase()} today?`);
+          optionsContainer.remove();
+          document.getElementById("queryInputContainer").hidden = false
+          sessionStorage.setItem("current_pet_id", petid)
+          createSession()
+        };
+        optionsContainer.appendChild(btn);
+      };
+
+      bubble.appendChild(optionsContainer);
+    }, 500);
 
     const fileInput = document.getElementById('fileInput');
     const attachButton = document.getElementById('attachButton');
-
     attachButton.addEventListener('click', () => {
-    fileInput.click(); // open file selector
+      fileInput.click();
     });
 
     fileInput.addEventListener('change', () => {
-    if (fileInput.files.length > 0) {
+      if (fileInput.files.length > 0) {
         const file = fileInput.files[0];
+        attached_files.push(file)
         addMessage("📎 Selected file: " + file.name, true);
+        addMessage("Noted your file please ask further!")
+      }
+    });
+
+
+    function createSession() {
+      const data = {
+        app_name: "petfit_agent",
+        user_id: "{{ request.user.id }}"
+      };
+
+      fetch(AgentApiBaseUrl + "/apps/petfit_agent/users/{{ request.user.id }}/sessions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())  // parse JSON
+        .then(json => {
+          console.log(json); // full parsed object
+          sessionStorage.setItem("current_session_id", json.id);
+        })
+        .catch(err => console.error("Error creating session:", err));
     }
-});
+
+
+    async function buildPayload(message, sessionId) {
+      const parts = [
+        {
+          text: message
+        }
+      ];
+
+      if (attached_files.length > 0) {
+        const file = attached_files[0];
+
+        // Convert file → base64 string
+        const base64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            // reader.result is "data:<mime>;base64,<encoded>"
+            const base64Data = reader.result.split(",")[1];
+            resolve(base64Data);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+
+        parts.push({
+          inlineData: {
+            displayName: file.name,
+            data: base64,
+            mimeType: file.type
+          }
+        });
+        attached_files = []
+      }
+
+      return {
+        appName: "petfit_agent",
+        userId: "{{request.user.id}}",
+        sessionId: sessionId,
+        newMessage: {
+          parts: parts,
+          role: "user"
+        },
+        streaming: true
+      };
+    }
+
+
+    async function getAgentResponseSSE(message) {
+
+      const sessionId = sessionStorage.getItem("current_session_id");
+      message = message + ".The pet_id for this pet is " + sessionStorage.getItem("current_pet_id")
+
+      const msg = addMessage("");
+      const bubble = msg.querySelector('.message-bubble');
+
+      bubble.textContent = "Analysing your query..."
+
+      // Example request data, replace with your own payload if needed
+      const data = await buildPayload(message, sessionId)
+
+      streamToBubble(AgentApiBaseUrl + "/run_sse", data, bubble);
+    }
+
+
+    function streamToBubble(fetchUrl, payload, bubbleElement) {
+      const THROTTLE_MS = 200;         // max UI updates frequency
+      const INACTIVITY_MS = 5000;      // show fallback after this much idle time
+      const TRUNCATE_LEN = 300;        // how much incremental text to show
+
+      let lastUiUpdate = 0;
+      let pendingUiTimer = null;
+      let pendingMessage = null;
+      let incrementalText = "";        // accumulated partial text
+      let lastEventAt = Date.now();
+      let inactivityTimer = null;
+
+      function scheduleInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(() => {
+          // If no event for INACTIVITY_MS, show a gentle progress message
+          safeUpdateUI("Still processing — this might take a moment…");
+        }, INACTIVITY_MS);
+      }
+
+      function safeUpdateUI(msg, force = false, final_message=false) {
+        const now = Date.now();
+        // throttle updates
+        if (force || (now - lastUiUpdate) >= THROTTLE_MS) {
+          bubbleElement.textContent = msg;
+          lastUiUpdate = now;
+          if (pendingUiTimer) { clearTimeout(pendingUiTimer); pendingUiTimer = null; }
+        } else {
+          // schedule a single follow-up update
+          pendingMessage = msg;
+          if (!pendingUiTimer) {
+            pendingUiTimer = setTimeout(() => {
+              if(final_message){
+                bubbleElement.innerHTML = pendingMessage
+              } else{
+                bubbleElement.textContent = pendingMessage;
+              }
+              lastUiUpdate = Date.now();
+              pendingUiTimer = null;
+              pendingMessage = null;
+            }, THROTTLE_MS - (now - lastUiUpdate));
+          }
+        }
+      }
+
+      function truncateForUI(text) {
+        if (!text) return "";
+        if (text.length <= TRUNCATE_LEN) return text;
+        return text.slice(0, TRUNCATE_LEN) + "…";
+      }
+
+      // Heuristic helpers that inspect a parsed event object
+      function hasFunctionCall(parsed) {
+        try {
+          return Boolean(parsed.content && parsed.content.parts && parsed.content.parts.some(p => p.functionCall));
+        } catch { return false; }
+      }
+      function hasFunctionResponse(parsed) {
+        try {
+          return Boolean(parsed.content && parsed.content.parts && parsed.content.parts.some(p => p.functionResponse));
+        } catch { return false; }
+      }
+      function getStatePetName(parsed) {
+        try {
+          const sd = parsed.actions && parsed.actions.stateDelta;
+          return sd && sd.pet_information && sd.pet_information.name;
+        } catch { return null; }
+      }
+      function getAnyTextParts(parsed) {
+        try {
+          if (!parsed.content || !parsed.content.parts) return "";
+          return parsed.content.parts.map(p => p.text || "").join("");
+        } catch { return ""; }
+      }
+
+      // The actual fetch + stream reading
+      fetch(fetchUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "text/event-stream"
+        },
+        body: JSON.stringify(payload)
+      }).then(response => {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+
+        function pump() {
+          reader.read().then(({ done, value }) => {
+            if (done) {
+              // stream ended — push final incremental text if any
+              if (incrementalText) safeUpdateUI(truncateForUI(incrementalText), true);
+              return;
+            }
+
+            lastEventAt = Date.now();
+
+            buffer += decoder.decode(value, { stream: true });
+
+            // SSE events are separated by a blank line (\n\n). Keep trailing partial event in buffer.
+            const events = buffer.split(/\r?\n\r?\n/);
+            buffer = events.pop() || ""; // last item may be incomplete - keep it
+
+            for (const evt of events) {
+              // gather all lines that start with "data:" (SSE can have multiple data lines per event)
+              const lines = evt.split(/\r?\n/).filter(l => l.startsWith("data:"));
+              if (lines.length === 0) continue;
+
+              const jsonText = lines.map(l => l.replace(/^data:\s*/, "")).join("\n");
+              // Try to parse JSON. If parsing fails, skip (it may be a non-JSON or partial event).
+              let parsed;
+              try {
+                parsed = JSON.parse(jsonText);
+              } catch (e) {
+                // Not a full JSON — skip this event (we'll get the rest later)
+                continue;
+              }
+
+              // handle event
+              handleEvent(parsed);
+            }
+
+            pump();
+          }).catch(err => {
+            console.error("Stream read error:", err);
+            safeUpdateUI("Connection error while streaming.");
+          });
+        } // pump
+
+        pump();
+      }).catch(err => {
+        console.error("Fetch error:", err);
+        safeUpdateUI("Unable to start stream.");
+      });
+
+      // Main handler — choose small messages based on event content
+      function handleEvent(parsed) {
+        // 1) function call: model asked for some tool (show short message)
+        if (hasFunctionCall(parsed)) {
+          safeUpdateUI("Looking up pet information…");
+          return;
+        }
+
+        // 2) function response: tool returned — analyze next
+        if (hasFunctionResponse(parsed)) {
+          safeUpdateUI("Data received — analyzing…");
+          return;
+        }
+
+        // 3) actions.stateDelta contains pet info
+        const petName = getStatePetName(parsed);
+        if (petName) {
+          safeUpdateUI(`Found pet: ${petName} — checking recent vitals…`);
+          return;
+        }
+
+        // 4) partial text streaming — append incrementally but show only a trimmed preview
+        if (parsed.partial) {
+          const newText = getAnyTextParts(parsed);
+          if (newText) {
+            incrementalText += newText;
+            safeUpdateUI(truncateForUI(incrementalText));
+            return;
+          }
+        }
+
+        // 5) final text: show model's final message
+        const finalText = getAnyTextParts(parsed);
+        if (finalText) {
+          // set final text (force immediate)
+          safeUpdateUI(finalText, true, true);
+          incrementalText = ""; // reset
+          return;
+        }
+
+        // fallback: small heartbeat
+        safeUpdateUI("Processing...");
+      }
+    }
 
   </script>
+
 </body>
+
 </html>
