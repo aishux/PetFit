@@ -471,6 +471,8 @@
 
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+
   <script>
     document.getElementById("queryInputContainer").hidden = true
     const themeToggle = document.querySelector('.theme-toggle');
@@ -697,7 +699,8 @@
         const now = Date.now();
         // throttle updates
         if (force || (now - lastUiUpdate) >= THROTTLE_MS) {
-          bubbleElement.textContent = msg;
+          msg = marked.parse(msg).replaceAll("<strong>",'<strong style="font-weight: bolder;">')
+          bubbleElement.innerHTML = msg;
           lastUiUpdate = now;
           if (pendingUiTimer) { clearTimeout(pendingUiTimer); pendingUiTimer = null; }
         } else {
@@ -705,11 +708,8 @@
           pendingMessage = msg;
           if (!pendingUiTimer) {
             pendingUiTimer = setTimeout(() => {
-              if(final_message){
-                bubbleElement.innerHTML = pendingMessage
-              } else{
-                bubbleElement.textContent = pendingMessage;
-              }
+              pendingMessage = marked.parse(pendingMessage).replaceAll("<strong>",'<strong style="font-weight: bolder;">')
+              bubbleElement.innerHTML = pendingMessage;
               lastUiUpdate = Date.now();
               pendingUiTimer = null;
               pendingMessage = null;
