@@ -148,7 +148,12 @@ reranker_model = Reranker(
 
 
 def get_table(table_name):
-    return db.open_table(table_name)
+    try:
+        current_table = db.open_table(table_name)
+    except Exception as e:
+        reconnect_db()
+        current_table = db.open_table(table_name)
+    return current_table
 
 
 def save_pet_weekly_history_cache(callback_context:CallbackContext, info: str):
@@ -166,3 +171,17 @@ def save_pet_weekly_history_cache(callback_context:CallbackContext, info: str):
         print("Inserted data successfully!")
     
     return "Saved data"
+
+def query_db(query):
+    try:
+        res = db.query(query)
+    except Exception as e:
+        db = reconnect_db()
+        res = db.query(query)
+    return res
+
+def reconnect_db():
+    global db
+    print("Refreshing database connection..")
+    db = TiDBClient.connect(TIDB_DATABASE_URL)
+    return db

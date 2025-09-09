@@ -1,4 +1,4 @@
-from petfit_agent.setup import db, get_table
+from petfit_agent.setup import query_db, get_table
 from google.adk.agents.callback_context import CallbackContext
 import matplotlib.pyplot as plt
 import os
@@ -42,7 +42,8 @@ def create_and_save_graph(x, y, graph_title, file_name, graph_type="line"):
 
 def before_agent_callback_method(callback_context: CallbackContext):
     pet_id = callback_context.state["pet_information"]["pet_id"]
-    data_collection = db.query(f"""
+
+    data_collection = query_db(f"""
     SELECT
         DATE(`created_at`) AS `day`,
         ROUND(AVG(`heart_rate`),2) AS `avg_heart_rate`,
@@ -56,7 +57,9 @@ def before_agent_callback_method(callback_context: CallbackContext):
         AND `created_at` >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)
     GROUP BY
         `day`;
-    """).to_pandas()
+    """)
+
+    data_collection = data_collection.to_pandas()
 
     print(data_collection)
 
