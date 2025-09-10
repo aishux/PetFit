@@ -325,6 +325,35 @@
       transform: translateY(-1px);
     }
 
+    /* faint pulsing text */
+    .bubble-analysing {
+      opacity: 0.4;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+
+    /* dots typing effect */
+    .typing-dots::after {
+      content: '';
+      display: inline-block;
+      animation: dots 1.5s steps(3, end) infinite;
+      width: 1em;
+      text-align: left;
+    }
+
+    @keyframes dots {
+      0%   { content: ''; }
+      33%  { content: '.'; }
+      66%  { content: '..'; }
+      100% { content: '...'; }
+    }
+
+
     @media (max-width: 768px) {
       .container {
         height: 100dvh;
@@ -374,7 +403,7 @@
       </ul>
       <div id="utility">
         {% if request.user.is_authenticated %}
-        <a href="{% url "logout" %}" class="tooltip">
+        <a href="{% url "logout" %}" class="tooltip" style="color: var(--text-01) !important;">
           <span class="material-symbols-outlined">logout</span>
           <span class="tooltip-text">Logout</span>
         </a>
@@ -665,7 +694,7 @@
 
       const msg = addMessage("");
       const bubble = msg.querySelector('.message-bubble');
-
+      bubble.classList.add("bubble-analysing", "typing-dots");
       bubble.textContent = "Analysing your query..."
 
       // Example request data, replace with your own payload if needed
@@ -695,21 +724,31 @@
         }, INACTIVITY_MS);
       }
 
-      function safeUpdateUI(msg, force = false, final_message=false) {
+      function safeUpdateUI(msg, force = false, final_message = false) {
         const now = Date.now();
+
+        function renderMessage(m) {
+          let html = marked.parse(m).replaceAll("<strong>", '<strong style="font-weight: bolder;">');
+
+          if (!final_message) {
+            bubbleElement.classList.add("bubble-analysing", "typing-dots");
+          } else {
+            bubbleElement.classList.remove("bubble-analysing", "typing-dots");
+          }
+
+          bubbleElement.innerHTML = html;
+        }
+
         // throttle updates
         if (force || (now - lastUiUpdate) >= THROTTLE_MS) {
-          msg = marked.parse(msg).replaceAll("<strong>",'<strong style="font-weight: bolder;">')
-          bubbleElement.innerHTML = msg;
+          renderMessage(msg);
           lastUiUpdate = now;
           if (pendingUiTimer) { clearTimeout(pendingUiTimer); pendingUiTimer = null; }
         } else {
-          // schedule a single follow-up update
           pendingMessage = msg;
           if (!pendingUiTimer) {
             pendingUiTimer = setTimeout(() => {
-              pendingMessage = marked.parse(pendingMessage).replaceAll("<strong>",'<strong style="font-weight: bolder;">')
-              bubbleElement.innerHTML = pendingMessage;
+              renderMessage(pendingMessage);
               lastUiUpdate = Date.now();
               pendingUiTimer = null;
               pendingMessage = null;
@@ -717,6 +756,7 @@
           }
         }
       }
+
 
       function truncateForUI(text) {
         if (!text) return "";
