@@ -1,0 +1,10 @@
+numpy==1.26.4
+librosa==0.11.0
+soundfile==0.13.1
+matplotlib==3.10.6
+reportlab==4.4.3
+tensorflow==2.16.2
+tensorflow-hub==0.16.1
+google-adk==1.11.0
+pytidb==0.0.11
+litellm==1.77.0

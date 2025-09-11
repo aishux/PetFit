@@ -40,7 +40,7 @@ def identify_sound_meaning(tool_context: ToolContext):
                         .to_list()
                 )
 
-                return f"Condition Identified is: {result[0]["sound_identification"]}"
+                return f"Condition Identified is: {result[0]['sound_identification']}"
 
 
     except Exception as e:

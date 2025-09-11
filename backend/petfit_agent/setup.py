@@ -8,6 +8,7 @@ from google.adk.agents.callback_context import CallbackContext
 from typing import List, Optional
 from google.adk.agents import Agent
 from google.adk.tools import google_search
+import certifi
 
 
 # ── CONFIG ────────────────────────────────────────────────────────────────
@@ -20,11 +21,14 @@ JINA_AI_API_KEY = os.getenv("JINA_AI_API_KEY")
 # ── END CONFIG ────────────────────────────────────────────────────────────
 
 
-TIDB_DATABASE_URL=f"mysql+pymysql://{TIDB_USER}:{TIDB_PASS}@{TIDB_HOST}:{TIDB_PORT}/{TIDB_DATABASE}?ssl_ca=/etc/ssl/cert.pem"
+TIDB_DATABASE_URL=f"mysql+pymysql://{TIDB_USER}:{TIDB_PASS}@{TIDB_HOST}:{TIDB_PORT}/{TIDB_DATABASE}?ssl_ca={certifi.where()}"
 
 db = TiDBClient.connect(TIDB_DATABASE_URL)
 
-yamnet_model = hub.load("petfit_agent/yamnet")
+BASE_DIR = os.path.dirname(__file__)
+
+yamnet_path = os.path.join(BASE_DIR, "yamnet")
+yamnet_model = hub.load(yamnet_path)
 
 text_embed = EmbeddingFunction(
     model_name="jina_ai/jina-embeddings-v3",

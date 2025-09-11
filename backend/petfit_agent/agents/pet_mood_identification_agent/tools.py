@@ -21,7 +21,7 @@ def identify_expression_meaning(tool_context: ToolContext):
                         .to_list()
                 )
 
-                return f"Mood Identified is: {result[0]["expression_identification"]}"
+                return f"Mood Identified is: {result[0]['expression_identification']}"
 
 
     except Exception as e:

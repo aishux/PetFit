@@ -62,6 +62,8 @@ report_generation_agent = LlmAgent(
         - Never output `Malformed function call`.
         - Never wrap code with extra quotes or brackets beyond the format above.
         - Your entire response MUST consist ONLY of the tool call.
+    
+    Once everything is completed tell the user that the report has been sent to their mail.
     """,
     tools=[pet_python_code_execution],
     output_key="report_generation",

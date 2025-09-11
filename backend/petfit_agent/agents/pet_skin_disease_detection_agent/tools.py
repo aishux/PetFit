@@ -24,7 +24,7 @@ def identify_skin_disease(tool_context: ToolContext):
                         .to_list()
                 )
 
-                return f"Skin Disease Identified is: {result[0]["skin_disease"]}"
+                return f"Skin Disease Identified is: {result[0]['skin_disease']}"
 
 
     except Exception as e:

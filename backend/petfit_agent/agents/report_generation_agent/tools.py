@@ -159,6 +159,6 @@ def pet_python_code_execution(tool_context: ToolContext, content: dict):
     print("Python Code: ", python_code)
     exec(python_code, {"reportlab":reportlab})
     pet_info = tool_context.state["pet_information"]
-    pdf_path = f"{pet_info["pet_id"]}_weekly_petfit_report-*.pdf"
+    pdf_path = f"{pet_info['pet_id']}_weekly_petfit_report-*.pdf"
     send_report_mail(tool_context, pdf_path, pet_info)
     return True
