@@ -557,11 +557,6 @@
     }
 
     sendButton.addEventListener('click', handleSendMessage);
-    messageInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        handleSendMessage();
-      }
-    });
 
     setTimeout(() => {
       const msg = addMessage("🐾 Hello! I'm your AI assistant. Could you please select your pet?");

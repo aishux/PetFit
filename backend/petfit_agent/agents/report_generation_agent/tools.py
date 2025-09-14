@@ -101,15 +101,15 @@ def after_agent_callback_method(callback_context: CallbackContext):
     for f in ["avg_miles_travelled.png", "avg_calories_burned.png", "total_sleep_hours.png", "avg_heart_rate.png"]:
         if os.path.exists(f):
             os.remove(f)
-    pet_id = callback_context.state["pet_information"]["pet_id"]
-    query_db(f"UPDATE `pet_weekly_history_cache` SET `information` = '' WHERE `pet_id` = '{pet_id}'; ")
+    # pet_id = callback_context.state["pet_information"]["pet_id"]
+    # query_db(f"UPDATE `pet_weekly_history_cache` SET `information` = '' WHERE `pet_id` = '{pet_id}'; ")
 
     return None
 
 def send_report_mail(tool_context, pdf_file_name, pet_info):
     pet_name = pet_info["name"]
     pet_owner_id = pet_info["owner_id"]
-    table = get_table("Users")
+    table = get_table("auth_user")
     owner_data = table.get(pet_owner_id)
     owner_email = owner_data.email
 

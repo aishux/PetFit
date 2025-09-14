@@ -83,12 +83,19 @@ class Pets(TableModel, table=True):
 
 
 class Users(TableModel, table=True):
-    __tablename__ = "Users"
+    __tablename__ = "auth_user"
 
-    user_id: int = Field(primary_key=True)
+    id: int =  Field(primary_key=True)
+    password: str = Field()
+    last_login: str = Field()
+    is_superuser: int = Field()
+    username: str = Field()
     first_name: str = Field()
     last_name: str = Field()
     email: str = Field()
+    is_staff: int = Field()
+    is_active: int = Field()
+    date_joined: str = Field()
 
 
 class PetWeeklyHistoryCache(TableModel, table=True):
