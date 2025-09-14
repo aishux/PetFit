@@ -15,6 +15,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static "petapp/images/favicon/apple-touch-icon.png" %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static "petapp/images/favicon/favicon-32x32.png" %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static "petapp/images/favicon/favicon-16x16.png" %}">
+  <link rel="manifest" href="{% static "petapp/images/favicon/site.webmanifest" %}">
   <title>Add Pet</title>
 
   <!-- CSS + Fonts -->
@@ -43,12 +47,7 @@ button:hover {
   <nav>
         
       <div id="logo">
-          <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8 32H0V21.9849C0 17.1239 4.0116 13.1839 8.96 13.1839H15.2V0.468341C15.2 0.251458 15.3792 0.0754376 15.6 0.0754376C15.7184 0.0754376 15.8308 0.127301 15.9068 0.216883L17.3616 1.92719C18.402 1.07577 19.74 0.563816 21.2 0.563816H22C23.442 0.563816 24.7656 1.06359 25.8 1.89654L27.2932 0.14066C27.3692 0.0514706 27.4812 0 27.6 0C27.8208 0 28 0.175628 28 0.392904V15.3896H23.36C17.528 15.3896 12.8 20.0337 12.8 25.7623V32Z" fill="#45413E" />
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M29.76 17.0569V12.0875C29.76 12.0836 29.76 12.0797 29.76 12.0758V6.79004C29.76 6.57435 29.9392 6.4 30.16 6.4C30.266 6.4 30.3676 6.44095 30.4424 6.51389L31.9576 7.98784C32.7864 7.42501 33.7936 7.09504 34.88 7.09504C35.97 7.09504 36.9808 7.42735 37.8112 7.99369L39.3176 6.52793C39.3924 6.45499 39.494 6.41404 39.6 6.41404C39.8208 6.41404 40 6.58878 40 6.80408V23.2632C40 28.0883 35.9884 32 31.04 32H14.4V25.7938C14.4 20.969 18.4116 17.0569 23.36 17.0569H29.76Z" fill="#45413E" />
-          </svg>
-
-          PetFit Ai
+          <img src="{% static 'petapp/images/logo.png' %}" alt="PetFit AI Logo" width="140" height="132">
       </div>
       <ul class="navigation-menu">
           <li><a href="{% url "mainpage" %}">Home</a></li>
@@ -114,70 +113,6 @@ button:hover {
       </div>
     
     {% endfor %}
-
-    <!-- Pet Card 2 -->
-    <div class="card-large p-4 relative bg-white rounded-xl shadow-md overflow-hidden">
-        <!-- Close Button -->
-        <button onclick="removeCard(this)" 
-                class="absolute top-2 right-2 z-10 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition">
-        &times;
-        </button>
-    
-        <div class="card-image bg-gray-100 relative">
-        <img src="https://ouch-cdn2.icons8.com/US6gJ6fHUOJqruLB7KDe5zEa82iDSp7OdO-bv-aLtvU/rs:fit:368:310/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNjU5/LzdmOWU1ZjU0LTMx/ZDQtNDgwNS1iM2E2/LWM3NzgyMTcyNzJh/NC5wbmc.png" alt="Cat" class="w-full">
-        </div>
-    
-        <ul class="mt-2">
-        <li>Whiskers</li>
-        <li class="text-sm text-gray-600">Age: 2 years 3 months</li>
-        <li class="text-sm italic text-gray-500">"Loves running in the park"</li>
-        </ul>
-
-        <!-- Edit Button -->
-        <button type="button" class="btn-outline-dark edit-btn">Edit Details</button>
-    </div>
-
-    <!-- Pet Card 3 -->
-    <div class="card-large p-4 relative bg-white rounded-xl shadow-md overflow-hidden">
-        <!-- Close Button -->
-        <button onclick="removeCard(this)" 
-                class="absolute top-2 right-2 z-10 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition">
-        &times;
-        </button>
-    
-        <div class="card-image bg-gray-100 relative">
-        <img src="{% static "petapp/images/bird.png" %}" alt="Parrot" class="w-full">
-        </div>
-    
-        <ul class="mt-2">
-        <li>Polly</li>
-        <li class="text-sm text-gray-600">Age: 2 years 3 months</li>
-        <li class="text-sm italic text-gray-500">"Loves running in the park"</li>
-        </ul>
-
-        <!-- Edit Button -->
-        <button type="button" class="btn-outline-dark edit-btn">Edit Details</button>
-    </div>
-    
-  
-      <!-- Pet Card 4 -->
-      <div class="card-large p-4 relative bg-white rounded-xl shadow-md overflow-hidden">
-        <!-- Close Button -->
-        <button onclick="removeCard(this)" 
-                class="absolute top-2 right-2 z-10 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow hover:bg-red-500 hover:text-white transition">
-        &times;
-        </button>
-        <div class="card-image bg-gray-100">
-          <img src="{% static "petapp/images/hamster.png" %}" alt="Fish" class="w-full">
-        </div>
-        <ul>
-          <li>Goldie</li>
-          <li class="text-sm text-gray-600">Age: 2 years 3 months</li>
-        <li class="text-sm italic text-gray-500">"Loves running in the park"</li>
-        </ul>
-        <!-- Edit Button -->
-        <button type="button" class="btn-outline-dark edit-btn">Edit Details</button>
-      </div>
   
     </div>
   </div>

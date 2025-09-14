@@ -1,0 +1,8 @@
+Django==5.2.6
+django-tidb==5.2.0
+matplotlib==3.10.6
+mysql-connector-python==9.4.0
+mysqlclient==2.2.7
+whitenoise
+gunicorn
+python-dotenv==1.1.1
