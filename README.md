@@ -151,6 +151,12 @@ Our journey is fueled by the belief that pets deserve the very best â€” and weâ€
 
 ## How to Run
 
+### Live Application
+
+Access Here: https://petfit-763935002709.us-central1.run.app/
+
+---
+
 ### Run ADK
 
 1. **Install Google Cloud CLI**
