@@ -126,7 +126,7 @@ Our journey is fueled by the belief that pets deserve the very best â€” and weâ€
 
 **Test creds for website login**:
 
-- Email: nikhilsmankani@gmail.com
+- Email: aishux07@gmail.com
 - Password: Hello@1234
 
 

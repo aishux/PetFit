@@ -79,21 +79,33 @@ def addPet(request):
 
         pet.save()
 
-    all_pets = Pet.objects.filter(owner_id=request.user.id)
+    if request.user.is_authenticated:
+        all_pets = Pet.objects.filter(owner_id=request.user.id)
 
-    return render(request, "add-pet.html", {"all_pets":all_pets})
+        return render(request, "add-pet.html", {"all_pets":all_pets})
+    else:
+        return HttpResponseRedirect(reverse("login"))
+
 
 def chat(request):
     if request.user.is_authenticated:
         pets = Pet.objects.filter(owner_id=request.user.id)
-        return render(request, "chat.html", {"all_pets": pets})
+        if pets:
+            return render(request, "chat.html", {"all_pets": pets})
+        else:
+            messages.error(request, "Please add atleast one pet first!")
+            return HttpResponseRedirect(reverse("addPet"))
     else:
         return HttpResponseRedirect(reverse("login"))
 
 def dashboard(request):
     if request.user.is_authenticated:
         pets = Pet.objects.filter(owner_id=request.user.id)
-        return render(request, "dashboard.html", {"all_pets": pets})
+        if pets:
+            return render(request, "dashboard.html", {"all_pets": pets})
+        else:
+            messages.error(request, "Please add atleast one pet first!")
+            return HttpResponseRedirect(reverse("addPet"))
     else:
         return HttpResponseRedirect(reverse("login"))
     
