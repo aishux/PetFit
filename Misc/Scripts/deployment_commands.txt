@@ -1,0 +1,24 @@
+export GOOGLE_CLOUD_PROJECT=""
+export GOOGLE_CLOUD_LOCATION="us-central1"
+export AGENT_PATH="./petfit_agent"
+export SERVICE_NAME="petfit-agent-service"
+export APP_NAME="petfit_agent"
+
+
+adk deploy cloud_run \
+--project=$GOOGLE_CLOUD_PROJECT \
+--region=$GOOGLE_CLOUD_LOCATION \
+--service_name=$SERVICE_NAME \
+--app_name=$APP_NAME \
+--allow_origins="*" \
+$AGENT_PATH
+
+
+
+gcloud builds submit --tag us-central1-docker.pkg.dev//webapp/petfit-ui:latest
+
+
+gcloud run deploy petfit \
+  --image us-central1-docker.pkg.dev//webapp/petfit-ui:latest \
+  --region us-central1 \
+  --allow-unauthenticated
