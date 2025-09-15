@@ -3,7 +3,32 @@
 <img src="https://petfit-763935002709.us-central1.run.app/static/petapp/images/logo.png" width="50%">
 </div>
 
-## 🧠 Inspiration
+---
+
+## 📑 Table of Contents
+
+* [Inspiration](#inspiration)
+* [What it does](#what-it-does)
+* [How we built it](#how-we-built-it)
+
+  * [Agent and Tool Breakdown](#agent-and-tool-breakdown)
+  * [TiDB — central role (what we used & why it matters)](#tidb--central-role-what-we-used--why-it-matters)
+  * [Core components & stacks](#core-components--stacks)
+* [Challenges we ran into](#challenges-we-ran-into)
+* [Accomplishments that we're proud of](#accomplishments-that-were-proud-of)
+* [What we learned](#what-we-learned)
+* [What’s Next for PetFit AI](#whats-next-for-petfit-ai)
+* [How to Run](#how-to-run)
+
+  * [Run ADK](#run-adk)
+  * [Run Webapp](#run-webapp)
+  * [Miscellaneous Setup](#miscellaneous-setup)
+* [Test creds for website login](#test-creds-for-website-login)
+* [TiDB Cloud Account](#tidb-cloud-account)
+
+---
+
+## Inspiration
 
 The idea for PetFit AI comes from a very personal experience. I have a cat named **Chai**, and when he was just two months old, he broke his leg one night while playing. I didn’t realize how serious it was, and with no vet available that late at night, I felt helpless and panicked.
 
@@ -111,7 +136,7 @@ We are incredibly proud of building a fully functional, end-to-end system that d
 
 We gained a deeper understanding of building scalable, real-time applications using a distributed database. We learned how to leverage **TiDB's** unique features, such as its HTAP (Hybrid Transactional/Analytical Processing) capabilities and its support for multiple data types, including JSON and Vector Search. We also learned how to effectively manage complex AI workflows using a multi-agent architecture and how to handle data streaming from IoT devices into a structured database.
 
-## 🚀 What’s Next for PetFit AI
+## What’s Next for PetFit AI
 
 PetFit AI is just getting started. Our vision is to make pet care smarter, more accessible, and more compassionate for every owner. In the coming months, we aim to:
 
@@ -121,6 +146,74 @@ PetFit AI is just getting started. Our vision is to make pet care smarter, more 
 - Community Support — connect pet parents to share experiences, tips, and care stories.
 
 Our journey is fueled by the belief that pets deserve the very best — and we’re building the tools to make that possible.
+
+---
+
+## How to Run
+
+### Run ADK
+
+1. **Install Google Cloud CLI**
+
+   * Follow the official guide: [Install gcloud CLI](https://cloud.google.com/sdk/docs/install)
+
+2. **Setup environment**
+
+   ```bash
+   cd backend/petfit_agent
+   mv .env_example .env
+   ```
+
+   * Fill in the required environment variable values inside `.env`.
+
+3. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run ADK**
+
+   * Make sure you are authenticated with gcloud (`gcloud auth login`).
+   * Then move to the folder `backend` and run the ADK with the command `adk web`
+   * This will start the multi-agent system that powers PetFit.
+
+---
+
+### Run Webapp
+
+1. **Setup environment**
+
+   ```bash
+   cd webapp/PetFit
+   mv .env_example .env
+   ```
+
+   * Fill in the required environment variable values inside `.env`.
+
+2. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run Django**
+
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   python manage.py runserver
+   ```
+
+   * This starts the web interface on your local machine.
+
+---
+
+### Miscellaneous Setup
+
+* There is a `datasets` folder in the project containing all the datasets used.
+* Inside it, you will also find scripts that embed these datasets (images, audio, and text) into **TiDB**.
+* Run these scripts once to populate your TiDB instance with the base data needed for the agents to work.
 
 ---
 
