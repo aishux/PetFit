@@ -1,3 +1,8 @@
+# PetFit
+<div align="center">
+<img src="https://petfit-763935002709.us-central1.run.app/static/petapp/images/logo.png" width="50%">
+</div>
+
 ## 🧠 Inspiration
 
 The idea for PetFit AI comes from a very personal experience. I have a cat named **Chai**, and when he was just two months old, he broke his leg one night while playing. I didn’t realize how serious it was, and with no vet available that late at night, I felt helpless and panicked.
